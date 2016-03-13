@@ -8,6 +8,8 @@ public class grab : MonoBehaviour
     public  GameObject enteredObject = null;
     SteamVR_TrackedObject trackedObj;
 
+    Vector3 lastPosition;
+
     void Awake()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
@@ -20,16 +22,75 @@ public class grab : MonoBehaviour
         {
             if(enteredObject != null)
             {
-                Debug.Log("Entered Object " + enteredObject.name);
                 selectedObject = enteredObject;
+                GrabObject(selectedObject);
             }
-            Debug.Log("Click DOwn");
         }
         if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
+            releaseObject(selectedObject);
             selectedObject = null;
-            Debug.Log("Click Up");
         }
-        
+        if (selectedObject != null)
+        {
+            lastPosition = transform.position;
+        }
+
+    }
+
+    void GrabObject(GameObject whichObject)
+    {
+        switch (whichObject.tag)
+        {
+            case "furniture":
+                pickupFurniture(whichObject);
+                break;
+            case "wallMounted":
+
+                break;
+            case "ceilingMounted":
+
+                break;
+        }
+    }
+
+    void releaseObject(GameObject whichObject)
+    {
+        switch (whichObject.tag)
+        {
+            case "furniture":
+                releaseFurniture(whichObject);
+
+                break;
+            case "wallMounted":
+
+                break;
+            case "ceilingMounted":
+
+                break;
+        }
+    }
+
+    void pickupFurniture(GameObject whichObject)
+    {
+        Destroy(whichObject.GetComponent<Rigidbody>());
+        whichObject.transform.SetParent(transform);
+    }
+    void releaseFurniture(GameObject whichObject)
+    {
+        whichObject.AddComponent<Rigidbody>();
+        whichObject.transform.SetParent(null);
+        whichObject.GetComponent<Rigidbody>().velocity = (transform.position - lastPosition) / Time.deltaTime;
+    }
+
+    void pickupWallMounted(GameObject whichObject)
+    {
+        whichObject.transform.SetParent(transform);
+    }
+    void releaseWallMounted(GameObject whichObject)
+    {
+        whichObject.AddComponent<Rigidbody>();
+        whichObject.transform.SetParent(null);
+        whichObject.GetComponent<Rigidbody>().velocity = (transform.position - lastPosition) / Time.deltaTime;
     }
 }
