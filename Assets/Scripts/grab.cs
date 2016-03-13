@@ -10,6 +10,7 @@ public class grab : MonoBehaviour
     public LayerMask selectableMask;
     public GameObject selectedObject = null;
     public  GameObject enteredObject = null;
+    public bool justUsed = false;
     SteamVR_TrackedObject trackedObj;
 
     Vector3 lastPosition;
@@ -105,17 +106,14 @@ public class grab : MonoBehaviour
     void pickupCatalogueObject(GameObject whichObject)
     {
         GameObject newItem = GameObject.Instantiate(whichObject.GetComponent<catalogueItem>().fullSizeItem, whichObject.transform.position, whichObject.transform.rotation) as GameObject;
-        //newItem.transform.localScale = whichObject.transform.localScale;
-
-        StartCoroutine(selectSoon(newItem));
+        justUsed = true;
+        StartCoroutine(clearJustUsed());
     }
 
-    IEnumerator selectSoon(GameObject whichObject)
+    IEnumerator clearJustUsed()
     {
         yield return new WaitForSeconds(1f);
-        pickupFloorMounted(whichObject);
-        selectedObject = whichObject;
-        StartCoroutine(resizeToFull(whichObject, .5f));
+        justUsed = false;
     }
 
     IEnumerator resizeToFull(GameObject whichObject, float howLong)

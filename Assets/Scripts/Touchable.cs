@@ -6,10 +6,8 @@ public class Touchable : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered");
         if(other.gameObject.tag == "controller")
         {
-            Debug.Log("Main Entered");
             other.GetComponent<grab>().enteredObject = transform.gameObject;
         }
     }
