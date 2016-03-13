@@ -1,0 +1,123 @@
+fileFormatVersion: 2
+guid: 9bd04148e10ef4b5c8d0f1b9a0293150
+timeCreated: 1457853544
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: IKEA_Storm_Floor_Lamp00
+    100002: IKEA_Storm_Floor_Lamp01
+    100004: IKEA_Storm_Floor_Lamp02
+    100006: IKEA_Storm_Floor_Lamp09
+    100008: IKEA_Storm_Floor_Lamp10
+    100010: IKEA_Storm_Floor_Lamp11
+    100012: IKEA_Storm_Floor_Lamp12
+    100014: IKEA_Storm_Floor_Lamp13
+    100016: //RootNode
+    400000: IKEA_Storm_Floor_Lamp00
+    400002: IKEA_Storm_Floor_Lamp01
+    400004: IKEA_Storm_Floor_Lamp02
+    400006: IKEA_Storm_Floor_Lamp09
+    400008: IKEA_Storm_Floor_Lamp10
+    400010: IKEA_Storm_Floor_Lamp11
+    400012: IKEA_Storm_Floor_Lamp12
+    400014: IKEA_Storm_Floor_Lamp13
+    400016: //RootNode
+    2300000: IKEA_Storm_Floor_Lamp00
+    2300002: IKEA_Storm_Floor_Lamp01
+    2300004: IKEA_Storm_Floor_Lamp02
+    2300006: IKEA_Storm_Floor_Lamp09
+    2300008: IKEA_Storm_Floor_Lamp10
+    2300010: IKEA_Storm_Floor_Lamp11
+    2300012: IKEA_Storm_Floor_Lamp12
+    2300014: IKEA_Storm_Floor_Lamp13
+    3300000: IKEA_Storm_Floor_Lamp00
+    3300002: IKEA_Storm_Floor_Lamp01
+    3300004: IKEA_Storm_Floor_Lamp02
+    3300006: IKEA_Storm_Floor_Lamp09
+    3300008: IKEA_Storm_Floor_Lamp10
+    3300010: IKEA_Storm_Floor_Lamp11
+    3300012: IKEA_Storm_Floor_Lamp12
+    3300014: IKEA_Storm_Floor_Lamp13
+    4300000: IKEA_Storm_Floor_Lamp13
+    4300002: IKEA_Storm_Floor_Lamp10
+    4300004: IKEA_Storm_Floor_Lamp09
+    4300006: IKEA_Storm_Floor_Lamp11
+    4300008: IKEA_Storm_Floor_Lamp01
+    4300010: IKEA_Storm_Floor_Lamp12
+    4300012: IKEA_Storm_Floor_Lamp02
+    4300014: IKEA_Storm_Floor_Lamp00
+    6400000: IKEA_Storm_Floor_Lamp00
+    6400002: IKEA_Storm_Floor_Lamp01
+    6400004: IKEA_Storm_Floor_Lamp02
+    6400006: IKEA_Storm_Floor_Lamp09
+    6400008: IKEA_Storm_Floor_Lamp10
+    6400010: IKEA_Storm_Floor_Lamp11
+    6400012: IKEA_Storm_Floor_Lamp12
+    6400014: IKEA_Storm_Floor_Lamp13
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
