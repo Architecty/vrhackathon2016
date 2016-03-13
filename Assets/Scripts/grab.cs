@@ -105,6 +105,10 @@ public class grab : MonoBehaviour
 
     void pickupCatalogueObject(GameObject whichObject)
     {
+        if(whichObject.tag == "close")
+        {
+            StartCoroutine(destroyObject(whichObject.transform.root.gameObject, .5f));
+        }
         GameObject newItem = GameObject.Instantiate(whichObject.GetComponent<catalogueItem>().fullSizeItem, whichObject.transform.position, whichObject.transform.rotation) as GameObject;
         justUsed = true;
         StartCoroutine(clearJustUsed());
@@ -132,7 +136,7 @@ public class grab : MonoBehaviour
     {
         if (whichObject.tag == "close")
         {
-            StartCoroutine(destroyObject(whichObject.transform.parent.gameObject, .5f));
+            StartCoroutine(destroyObject(whichObject.transform.root.gameObject, .5f));
         }
         else {
             Destroy(whichObject.GetComponent<Rigidbody>());

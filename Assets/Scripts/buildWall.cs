@@ -25,7 +25,7 @@ public class buildWall : MonoBehaviour
 
     GameObject wallStart;
     GameObject wallEnd;
-    GameObject trackObject = null;
+    public GameObject trackObject = null;
 
     public List<GameObject> chainedCorners = new List<GameObject>();
     public List<Vector3> chainedPoints = new List<Vector3>();
@@ -44,6 +44,7 @@ public class buildWall : MonoBehaviour
         var device = SteamVR_Controller.Input((int)trackedObj.index);
         if (isEnabled)
         {
+            if(transform.GetComponent<grab>().selectedObject == null) { 
             if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
             {
                 createTrackableObject();
@@ -65,6 +66,7 @@ public class buildWall : MonoBehaviour
                     chainedCorners.RemoveAt(lastElement);
                     chainedPoints.RemoveAt(lastElement);
                 }
+            }
             }
         }
 
