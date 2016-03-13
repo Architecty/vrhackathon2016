@@ -7,6 +7,7 @@ public class grab : MonoBehaviour
     public LayerMask wallMask;
     public LayerMask furnitureMask;
     public LayerMask ceilingMask;
+    public LayerMask selectableMask;
     public GameObject selectedObject = null;
     public  GameObject enteredObject = null;
     SteamVR_TrackedObject trackedObj;
@@ -40,7 +41,7 @@ public class grab : MonoBehaviour
             } else if(transform.FindChild("Laser").gameObject.active == true)
             {
                 transform.FindChild("Laser").gameObject.SetActive(false);
-                GrabObject(raycastFurniture());
+                GrabObject(raycastSelectable());
             }
         }
         if (selectedObject != null)
@@ -50,14 +51,14 @@ public class grab : MonoBehaviour
 
     }
 
-    void GrabObject(GameObject whichObject)
+    public void GrabObject(GameObject whichObject)
     {
         if (whichObject.layer == LayerMask.NameToLayer("Furniture")){ 
         selectedObject = whichObject;
         switch (whichObject.tag)
         {
-            case "furniture":
-                pickupFurniture(whichObject);
+            case "floorMounted":
+                pickupFloorMounted(whichObject);
                 break;
             case "wallMounted":
                 pickupWallMounted(whichObject);
@@ -72,7 +73,7 @@ public class grab : MonoBehaviour
             pickupMenu(whichObject);
         } else if(whichObject.layer == LayerMask.NameToLayer("Catalogue"))
         {
-
+            pickupCatalogueObject(whichObject);
         }
     }
 
@@ -81,9 +82,8 @@ public class grab : MonoBehaviour
         if (whichObject.layer == LayerMask.NameToLayer("Furniture")){
             switch (whichObject.tag)
         {
-            case "furniture":
-                releaseFurniture(whichObject);
-
+            case "floorMounted":
+                releaseFloorMounted(whichObject);
                 break;
             case "wallMounted":
                 releaseWallMounted(whichObject);
@@ -102,6 +102,34 @@ public class grab : MonoBehaviour
         selectedObject = null;
     }
 
+    void pickupCatalogueObject(GameObject whichObject)
+    {
+        GameObject newItem = GameObject.Instantiate(whichObject.GetComponent<catalogueItem>().fullSizeItem, whichObject.transform.position, whichObject.transform.rotation) as GameObject;
+        //newItem.transform.localScale = whichObject.transform.localScale;
+
+        StartCoroutine(selectSoon(newItem));
+    }
+
+    IEnumerator selectSoon(GameObject whichObject)
+    {
+        yield return new WaitForSeconds(1f);
+        pickupFloorMounted(whichObject);
+        selectedObject = whichObject;
+        StartCoroutine(resizeToFull(whichObject, .5f));
+    }
+
+    IEnumerator resizeToFull(GameObject whichObject, float howLong)
+    {
+        Vector3 startingScale = whichObject.transform.localScale;
+        float startTime = Time.time;
+        while(Time.time - startTime < howLong)
+        {
+            whichObject.transform.localScale = Vector3.Lerp(startingScale, new Vector3(1f,1f,1f), (Time.time - howLong) / howLong);
+            yield return null;
+        }
+        whichObject.transform.localScale = new Vector3(1f, 1f, 1f);
+    }
+
     void pickupMenu(GameObject whichObject)
     {
         Destroy(whichObject.GetComponent<Rigidbody>());
@@ -114,12 +142,12 @@ public class grab : MonoBehaviour
         whichObject.transform.SetParent(null);
     }
 
-    void pickupFurniture(GameObject whichObject)
+    void pickupFloorMounted(GameObject whichObject)
     {
         Destroy(whichObject.GetComponent<Rigidbody>());
         whichObject.transform.SetParent(transform);
     }
-    void releaseFurniture(GameObject whichObject)
+    void releaseFloorMounted(GameObject whichObject)
     {
         whichObject.AddComponent<Rigidbody>();
         whichObject.transform.SetParent(null);
@@ -164,11 +192,11 @@ public class grab : MonoBehaviour
         }
     }
 
-    GameObject raycastFurniture()
+    GameObject raycastSelectable()
     {
         Ray raycast = new Ray(transform.position, transform.forward);
         RaycastHit hit;
-        bool bHit = Physics.Raycast(raycast, out hit, 100f, furnitureMask);
+        bool bHit = Physics.Raycast(raycast, out hit, 100f, selectableMask);
         if (bHit)
         {
             return hit.collider.gameObject;
