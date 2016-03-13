@@ -10,7 +10,7 @@ public class SteamVR_Teleporter : MonoBehaviour
         TeleportTypeUseZeroY
     }
 
-    public bool teleportOnClick = false;
+    public bool teleportOnClick = true;
     public TeleportType teleportType = TeleportType.TeleportTypeUseZeroY;
     Transform reference;
 
@@ -26,7 +26,7 @@ public class SteamVR_Teleporter : MonoBehaviour
             Debug.LogError("SteamVR_Teleporter must be on a SteamVR_TrackedController");
             return;
         }
-        GetComponent<SteamVR_TrackedController>().TriggerClicked += new ClickedEventHandler(DoClick);
+        GetComponent<SteamVR_TrackedController>().PadClicked += new ClickedEventHandler(DoClick);
 
         if (teleportType == TeleportType.TeleportTypeUseTerrain)
         {
