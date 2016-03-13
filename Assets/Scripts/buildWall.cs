@@ -62,7 +62,7 @@ public class buildWall : MonoBehaviour
 
     void Update()
     {
-        if(trackObject != null)
+        if (trackObject != null)
         {
             trackObject.transform.position = roundToNearest(getRaycastPoint(), 0.3048f);
         }
@@ -134,9 +134,10 @@ public class buildWall : MonoBehaviour
         {
             chainWalls = false;
             CreateObject("Exterior Walls", chainedPoints, 3f, wallMaterial);
-            createCaps("Caps", chainedPoints, .01f, floorMaterial);
-            createCaps("Caps", chainedPoints, 3f, ceilingMaterial);
-        } else
+            createCaps("Caps", chainedPoints, .01f, floorMaterial, false);
+            createCaps("Caps", chainedPoints, 3f, ceilingMaterial, true);
+        }
+        else
         {
             BuildWallBetweenPoints(chainedPoints[chainedPoints.Count - 2], chainedPoints[chainedPoints.Count - 1], 3f, .1016f, wallMaterial);
         }
@@ -172,7 +173,8 @@ public class buildWall : MonoBehaviour
         if (bHit)
         {
             return hit.point;
-        } else
+        }
+        else
         {
             return Vector3.zero;
         }
@@ -187,7 +189,7 @@ public class buildWall : MonoBehaviour
         GameObject newWall = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;
         newWall.transform.position = new Vector3(midPoint.x, height / 2, midPoint.z);
         newWall.transform.localScale = new Vector3(distance + thickness, height, thickness);
-        
+
 
         newWall.transform.localEulerAngles = new Vector3(0f, -1 * angle, 0f);
     }
@@ -201,7 +203,7 @@ public class buildWall : MonoBehaviour
         float xVal = endPoint.x - startPoint.x;
         float zVal = endPoint.z - startPoint.z;
 
-        if(xVal >= 0f && zVal >= 0f)
+        if (xVal >= 0f && zVal >= 0f)
         {
             angle = angle + 180;
         }
@@ -273,7 +275,7 @@ public class buildWall : MonoBehaviour
         }
 
         int[] allTriangles = new int[TriangleList.Count];
-        for(int i = 0; i < TriangleList.Count; i++)
+        for (int i = 0; i < TriangleList.Count; i++)
         {
             allTriangles[i] = TriangleList[i];
         }
@@ -284,39 +286,86 @@ public class buildWall : MonoBehaviour
         {
             reverseIndices[(allTriangles.Length) - i - 1] = allTriangles[i];
         }
-        
+
         GameObject newObject = createMesh(name, AllVerts, allTriangles, whichMaterial);
         GameObject newObject2 = createMesh(name + "-reverse", AllVerts, reverseIndices, whichMaterial);
 
         return newObject;
     }
 
-    GameObject CreateCap(string name, List<Vector3> points, Material whichMaterial)
+    GameObject CreateCap(string name, List<Vector3> points, Material whichMaterial, bool putAbove)
     {
-        
+
         List<int> TriangleList = new List<int>(); //Gotta put all of the triangles somewhere - defined by the index of 3 verts in AllVerts
 
         //Create Vector2s to feed into triangulator
-        Vector2[] TopCapVertices = new Vector2[points.Count];
+        Vector2[] TopCapVertices = new Vector2[4];
+        Vector3[] TopCapVertices3 = new Vector3[4];
         Vector3[] pointArray = new Vector3[points.Count];
+
+        float leftmost = points[0].x;
+        float rightmost = points[0].x;
+        float topmost = points[0].z;
+        float bottommost = points[0].z;
+
         for (int i = 0; i < points.Count; i++)
         {
-            TopCapVertices[i] = new Vector2(points[i].x, points[i].z);
+            if (points[i].x < leftmost)
+                leftmost = points[i].x;
+            if (points[i].x > rightmost)
+                rightmost = points[i].x;
+            if (points[i].z > topmost)
+                topmost = points[i].z;
+            if (points[i].z < bottommost)
+                bottommost = points[i].z;
+            //TopCapVertices[i] = new Vector2(points[i].x, points[i].z);
             pointArray[i] = points[i];
         }
+
+        Debug.Log(pointArray);
+        TopCapVertices[0] = new Vector2(leftmost, bottommost);
+        TopCapVertices[1] = new Vector2(leftmost, topmost);
+        TopCapVertices[2] = new Vector2(rightmost, topmost);
+        TopCapVertices[3] = new Vector2(rightmost, bottommost);
+
+        TopCapVertices3[0] = new Vector3(leftmost, pointArray[0].y, bottommost);
+        TopCapVertices3[1] = new Vector3(leftmost, pointArray[0].y, topmost);
+        TopCapVertices3[2] = new Vector3(rightmost, pointArray[0].y, topmost);
+        TopCapVertices3[3] = new Vector3(rightmost, pointArray[0].y, bottommost);
+
+
+        Vector3 centerPoint = new Vector3((leftmost + rightmost) / 2, (pointArray[0].y + .5f), (topmost + bottommost) / 2);
+        if (putAbove == false)
+        {
+            centerPoint.y = pointArray[0].y - .5f;
+        }
+
+
+        float width = Vector2.Distance(new Vector2(leftmost, bottommost), new Vector2(rightmost, bottommost));
+
+        float height = Vector2.Distance(new Vector2(leftmost, topmost), new Vector2(leftmost, bottommost));
+
+
+        GameObject newObject = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;
+
+        newObject.transform.position = centerPoint;
+        newObject.transform.localScale = new Vector3(width + 1f, 1f, height + 1f);
+
+
+        Debug.Log(TopCapVertices);
 
         Triangulator tr = new Triangulator(TopCapVertices);
         int[] indices = tr.Triangulate();
 
         int[] reverseIndices = new int[indices.Length];
 
-        for(int i = 0; i < indices.Length; i++)
+        for (int i = 0; i < indices.Length; i++)
         {
             reverseIndices[(indices.Length) - i - 1] = indices[i];
         }
 
-        GameObject newObject = createMesh(name, pointArray, indices, whichMaterial);
-        GameObject newObject2 = createMesh(name + "-reverse", pointArray, reverseIndices, whichMaterial);
+        // GameObject newObject = createMesh(name, TopCapVertices3, indices, whichMaterial);
+        //GameObject newObject2 = createMesh(name + "-reverse", TopCapVertices3, reverseIndices, whichMaterial);
 
         return newObject;
     }
@@ -343,16 +392,16 @@ public class buildWall : MonoBehaviour
         return newObject;
     }
 
-    void createCaps(string name, List<Vector3> points, float heightOffset, Material whichMaterial)
+    void createCaps(string name, List<Vector3> points, float heightOffset, Material whichMaterial, bool putAbove)
     {
         List<Vector3> allPoints = new List<Vector3>();
-        for(int i = 0; i < points.Count; i++)
+        for (int i = 0; i < points.Count; i++)
         {
             Vector3 pointPosition = new Vector3(points[i].x, heightOffset, points[i].z);
             allPoints.Add(pointPosition);
         }
 
-        GameObject topCap = CreateCap(name, allPoints, whichMaterial);
+        GameObject topCap = CreateCap(name, allPoints, whichMaterial, putAbove);
     }
 
 

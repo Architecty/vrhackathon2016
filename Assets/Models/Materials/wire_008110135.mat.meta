@@ -1,6 +1,10 @@
 fileFormatVersion: 2
 guid: 2ba003d407a5a564d870a03b4ca48ed4
+<<<<<<< HEAD
 timeCreated: 1457840887
+=======
+timeCreated: 1457842027
+>>>>>>> fix-ceiling-holes
 licenseType: Free
 NativeFormatImporter:
   userData: 
