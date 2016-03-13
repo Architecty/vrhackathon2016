@@ -297,13 +297,32 @@ public class buildWall : MonoBehaviour
         List<int> TriangleList = new List<int>(); //Gotta put all of the triangles somewhere - defined by the index of 3 verts in AllVerts
 
         //Create Vector2s to feed into triangulator
-        Vector2[] TopCapVertices = new Vector2[points.Count];
+        Vector2[] TopCapVertices = new Vector2[4];
         Vector3[] pointArray = new Vector3[points.Count];
+
+        float leftmost = points[0].x;
+        float rightmost = points[0].x;
+        float topmost = points[0].z;
+        float bottommost = points[0].z;
+
         for (int i = 0; i < points.Count; i++)
         {
-            TopCapVertices[i] = new Vector2(points[i].x, points[i].z);
+            if (points[i].x < leftmost)
+                leftmost = points[i].x;
+            if (points[i].x > rightmost)
+                rightmost = points[i].x;
+            if (points[i].z > topmost)
+                topmost = points[i].z;
+            if (points[i].z < bottommost)
+                bottommost = points[i].z;
+            //TopCapVertices[i] = new Vector2(points[i].x, points[i].z);
             pointArray[i] = points[i];
         }
+
+        TopCapVertices[0] = new Vector2(leftmost, bottommost);
+        TopCapVertices[1] = new Vector2(leftmost, topmost);
+        TopCapVertices[2] = new Vector2(rightmost, topmost);
+        TopCapVertices[3] = new Vector2(rightmost, bottommost);
 
         Triangulator tr = new Triangulator(TopCapVertices);
         int[] indices = tr.Triangulate();
