@@ -29,6 +29,7 @@ public class buildWall : MonoBehaviour
 
     public List<GameObject> chainedCorners = new List<GameObject>();
     public List<Vector3> chainedPoints = new List<Vector3>();
+    private int lastElement = -1;
     GameObject wallLine = null;
 
 
@@ -51,13 +52,18 @@ public class buildWall : MonoBehaviour
             {
                 addWallPoint();
             }
-            if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
+            if (device.GetTouchDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
             {
-
+                
             }
-            if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
+            if (device.GetTouchUp(SteamVR_Controller.ButtonMask.ApplicationMenu))
             {
-
+                if (lastElement != -1)
+                {
+                    chainedCorners.RemoveAt(lastElement);
+                    chainedPoints.RemoveAt(lastElement);
+                    lastElement = -1;
+                }
             }
         }
 
@@ -68,10 +74,10 @@ public class buildWall : MonoBehaviour
         if (trackObject != null)
         {
             trackObject.transform.position = roundToNearest(getRaycastPoint(), 0.3048f);
-            if (Vector3.Distance(trackObject.transform.position, chainedPoints[0]) < CLOSE_ENOUGH)
-                wallStart.GetComponent<Renderer>().material = hoverMaterial;
+            if (Vector3.Distance(trackObject.transform.position, wallStart.transform.position) < CLOSE_ENOUGH)
+                trackObject.GetComponent<Renderer>().material = hoverMaterial;
             else
-                wallStart.GetComponent<Renderer>().material = startMaterial;
+                trackObject.GetComponent<Renderer>().material = startMaterial;
         }
     }
 
@@ -102,6 +108,7 @@ public class buildWall : MonoBehaviour
             newPoint.GetComponent<Renderer>().material = startMaterial;
             chainedPoints.Add(newPoint.transform.position);
             chainedCorners.Add(newPoint);
+            lastElement = chainedPoints.IndexOf(newPoint.transform.position);
         }
         else {
             if (chainWalls)
