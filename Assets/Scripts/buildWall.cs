@@ -48,6 +48,14 @@ public class buildWall : MonoBehaviour
             {
                 addWallPoint();
             }
+            if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
+            {
+
+            }
+            if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
+            {
+
+            }
         }
 
     }
