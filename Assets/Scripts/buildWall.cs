@@ -5,8 +5,11 @@ using System.Collections;
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class buildWall : MonoBehaviour
 {
+    private float CLOSE_ENOUGH = .6f;
+
     public Material startMaterial;
     public Material intermediateMaterial;
+    public Material hoverMaterial;
     public Material trackerMaterial;
     public Material wallMaterial;
     public Material floorMaterial;
@@ -26,6 +29,7 @@ public class buildWall : MonoBehaviour
 
     public List<GameObject> chainedCorners = new List<GameObject>();
     public List<Vector3> chainedPoints = new List<Vector3>();
+    private int lastElement = -1;
     GameObject wallLine = null;
 
 
@@ -48,13 +52,19 @@ public class buildWall : MonoBehaviour
             {
                 addWallPoint();
             }
-            if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
+            if (device.GetTouchDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
             {
-
+                
             }
-            if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
+            if (device.GetTouchUp(SteamVR_Controller.ButtonMask.ApplicationMenu))
             {
-
+                lastElement = chainedPoints.Count - 1;
+                if (lastElement != -1)
+                {
+                    Destroy(chainedCorners[lastElement]);
+                    chainedCorners.RemoveAt(lastElement);
+                    chainedPoints.RemoveAt(lastElement);
+                }
             }
         }
 
@@ -65,6 +75,10 @@ public class buildWall : MonoBehaviour
         if (trackObject != null)
         {
             trackObject.transform.position = roundToNearest(getRaycastPoint(), 0.3048f);
+            if (Vector3.Distance(trackObject.transform.position, wallStart.transform.position) < CLOSE_ENOUGH)
+                trackObject.GetComponent<Renderer>().material = hoverMaterial;
+            else
+                trackObject.GetComponent<Renderer>().material = startMaterial;
         }
     }
 
@@ -77,9 +91,10 @@ public class buildWall : MonoBehaviour
             {
                 GameObject starter = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;
                 starter.transform.position = startPoint;
-                starter.transform.localScale = new Vector3(.2f, .2f, .2f);
+                starter.transform.localScale = new Vector3(.25f, .25f, .25f);
                 starter.GetComponent<Renderer>().material = trackerMaterial;
                 trackObject = starter;
+                wallStart = starter;
             }
         }
     }
@@ -94,11 +109,12 @@ public class buildWall : MonoBehaviour
             newPoint.GetComponent<Renderer>().material = startMaterial;
             chainedPoints.Add(newPoint.transform.position);
             chainedCorners.Add(newPoint);
+            lastElement = chainedPoints.IndexOf(newPoint.transform.position);
         }
         else {
             if (chainWalls)
             {
-                if (trackObject.transform.position == chainedPoints[0])
+                if (Vector3.Distance(trackObject.transform.position, chainedPoints[0]) < CLOSE_ENOUGH)
                 {
                     endWall();
                 }
