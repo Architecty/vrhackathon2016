@@ -37,7 +37,6 @@ public class grab : MonoBehaviour
         {
             if (selectedObject) { 
                 releaseObject(selectedObject);
-                selectedObject = null;
             } else if(transform.FindChild("Laser").gameObject.active == true)
             {
                 transform.FindChild("Laser").gameObject.SetActive(false);
@@ -53,6 +52,7 @@ public class grab : MonoBehaviour
 
     void GrabObject(GameObject whichObject)
     {
+        if (whichObject.layer == LayerMask.NameToLayer("Furniture")){ 
         selectedObject = whichObject;
         switch (whichObject.tag)
         {
@@ -66,11 +66,20 @@ public class grab : MonoBehaviour
                 pickupCeilingMounted(whichObject);
                 break;
         }
+        } else if(whichObject.layer == LayerMask.NameToLayer("Menu"))
+        {
+            selectedObject = whichObject;
+            pickupMenu(whichObject);
+        } else if(whichObject.layer == LayerMask.NameToLayer("Catalogue"))
+        {
+
+        }
     }
 
     void releaseObject(GameObject whichObject)
     {
-        switch (whichObject.tag)
+        if (whichObject.layer == LayerMask.NameToLayer("Furniture")){
+            switch (whichObject.tag)
         {
             case "furniture":
                 releaseFurniture(whichObject);
@@ -83,6 +92,26 @@ public class grab : MonoBehaviour
                 releaseCeilingMounted(whichObject);
                 break;
         }
+    } else if(whichObject.layer == LayerMask.NameToLayer("Menu"))
+        {
+            releaseMenu(whichObject);
+        } else if(whichObject.layer == LayerMask.NameToLayer("Catalogue"))
+        {
+
+        }
+        selectedObject = null;
+    }
+
+    void pickupMenu(GameObject whichObject)
+    {
+        Destroy(whichObject.GetComponent<Rigidbody>());
+        whichObject.transform.SetParent(transform);
+    }
+    void releaseMenu(GameObject whichObject)
+    {
+        whichObject.AddComponent<Rigidbody>();
+        whichObject.GetComponent<Rigidbody>().isKinematic = true;
+        whichObject.transform.SetParent(null);
     }
 
     void pickupFurniture(GameObject whichObject)
