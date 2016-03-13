@@ -134,8 +134,8 @@ public class buildWall : MonoBehaviour
         {
             chainWalls = false;
             CreateObject("Exterior Walls", chainedPoints, 3f, wallMaterial);
-            createCaps("Caps", chainedPoints, .01f, floorMaterial);
-            createCaps("Caps", chainedPoints, 3f, ceilingMaterial);
+            createCaps("Caps", chainedPoints, .01f, floorMaterial, false);
+            createCaps("Caps", chainedPoints, 3f, ceilingMaterial, true);
         } else
         {
             BuildWallBetweenPoints(chainedPoints[chainedPoints.Count - 2], chainedPoints[chainedPoints.Count - 1], 3f, .1016f, wallMaterial);
@@ -291,13 +291,14 @@ public class buildWall : MonoBehaviour
         return newObject;
     }
 
-    GameObject CreateCap(string name, List<Vector3> points, Material whichMaterial)
+    GameObject CreateCap(string name, List<Vector3> points, Material whichMaterial, bool putAbove)
     {
         
         List<int> TriangleList = new List<int>(); //Gotta put all of the triangles somewhere - defined by the index of 3 verts in AllVerts
 
         //Create Vector2s to feed into triangulator
         Vector2[] TopCapVertices = new Vector2[4];
+        Vector3[] TopCapVertices3 = new Vector3[4];
         Vector3[] pointArray = new Vector3[points.Count];
 
         float leftmost = points[0].x;
@@ -319,10 +320,37 @@ public class buildWall : MonoBehaviour
             pointArray[i] = points[i];
         }
 
+        Debug.Log(pointArray);
         TopCapVertices[0] = new Vector2(leftmost, bottommost);
         TopCapVertices[1] = new Vector2(leftmost, topmost);
         TopCapVertices[2] = new Vector2(rightmost, topmost);
         TopCapVertices[3] = new Vector2(rightmost, bottommost);
+
+        TopCapVertices3[0] = new Vector3(leftmost, pointArray[0].y, bottommost);
+        TopCapVertices3[1] = new Vector3(leftmost, pointArray[0].y, topmost);
+        TopCapVertices3[2] = new Vector3(rightmost, pointArray[0].y, topmost);
+        TopCapVertices3[3] = new Vector3(rightmost, pointArray[0].y, bottommost);
+
+
+        Vector3 centerPoint = new Vector3((leftmost + rightmost) / 2, (pointArray[0].y + .5f), (topmost + bottommost) / 2);
+        if(putAbove == false)
+        {
+            centerPoint.y = pointArray[0].y - .5f;
+        }
+
+
+            float width = Vector2.Distance(new Vector2(leftmost, bottommost), new Vector2(rightmost, bottommost));
+
+        float height = Vector2.Distance(new Vector2(leftmost, topmost), new Vector2(leftmost, bottommost));
+
+
+        GameObject newObject = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;
+
+        newObject.transform.position = centerPoint;
+        newObject.transform.localScale = new Vector3(width + 1f, 1f, height + 1f);
+
+
+        Debug.Log(TopCapVertices);
 
         Triangulator tr = new Triangulator(TopCapVertices);
         int[] indices = tr.Triangulate();
@@ -334,8 +362,8 @@ public class buildWall : MonoBehaviour
             reverseIndices[(indices.Length) - i - 1] = indices[i];
         }
 
-        GameObject newObject = createMesh(name, pointArray, indices, whichMaterial);
-        GameObject newObject2 = createMesh(name + "-reverse", pointArray, reverseIndices, whichMaterial);
+       // GameObject newObject = createMesh(name, TopCapVertices3, indices, whichMaterial);
+        //GameObject newObject2 = createMesh(name + "-reverse", TopCapVertices3, reverseIndices, whichMaterial);
 
         return newObject;
     }
@@ -362,7 +390,7 @@ public class buildWall : MonoBehaviour
         return newObject;
     }
 
-    void createCaps(string name, List<Vector3> points, float heightOffset, Material whichMaterial)
+    void createCaps(string name, List<Vector3> points, float heightOffset, Material whichMaterial, bool putAbove)
     {
         List<Vector3> allPoints = new List<Vector3>();
         for(int i = 0; i < points.Count; i++)
@@ -371,7 +399,7 @@ public class buildWall : MonoBehaviour
             allPoints.Add(pointPosition);
         }
 
-        GameObject topCap = CreateCap(name, allPoints, whichMaterial);
+        GameObject topCap = CreateCap(name, allPoints, whichMaterial, putAbove);
     }
 
 
