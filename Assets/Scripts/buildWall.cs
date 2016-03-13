@@ -5,6 +5,8 @@ using System.Collections;
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class buildWall : MonoBehaviour
 {
+    private float CLOSE_ENOUGH = .6f;
+
     public Material startMaterial;
     public Material intermediateMaterial;
     public Material hoverMaterial;
@@ -66,6 +68,10 @@ public class buildWall : MonoBehaviour
         if (trackObject != null)
         {
             trackObject.transform.position = roundToNearest(getRaycastPoint(), 0.3048f);
+            if (Vector3.Distance(trackObject.transform.position, chainedPoints[0]) < CLOSE_ENOUGH)
+                wallStart.GetComponent<Renderer>().material = hoverMaterial;
+            else
+                wallStart.GetComponent<Renderer>().material = startMaterial;
         }
     }
 
@@ -81,6 +87,7 @@ public class buildWall : MonoBehaviour
                 starter.transform.localScale = new Vector3(.2f, .2f, .2f);
                 starter.GetComponent<Renderer>().material = trackerMaterial;
                 trackObject = starter;
+                wallStart = starter;
             }
         }
     }
@@ -99,7 +106,7 @@ public class buildWall : MonoBehaviour
         else {
             if (chainWalls)
             {
-                if (Vector3.Distance(trackObject.transform.position, chainedPoints[0]) < 0.6f)
+                if (Vector3.Distance(trackObject.transform.position, chainedPoints[0]) < CLOSE_ENOUGH)
                 {
                     endWall();
                 }
