@@ -13,10 +13,12 @@ public class SteamVR_Teleporter : MonoBehaviour
     public bool teleportOnClick = true;
     public TeleportType teleportType = TeleportType.TeleportTypeUseZeroY;
     Transform reference;
+    SteamVR_TrackedObject trackedObj;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
+        trackedObj = GetComponent<SteamVR_TrackedObject>();
         Transform eyeCamera = GameObject.FindObjectOfType<SteamVR_Camera>().GetComponent<Transform>();
         // The referece point for the camera is two levels up from the SteamVR_Camera
         reference = eyeCamera.parent.parent;
@@ -26,7 +28,6 @@ public class SteamVR_Teleporter : MonoBehaviour
             Debug.LogError("SteamVR_Teleporter must be on a SteamVR_TrackedController");
             return;
         }
-        GetComponent<SteamVR_TrackedController>().PadClicked += new ClickedEventHandler(DoClick);
 
         if (teleportType == TeleportType.TeleportTypeUseTerrain)
         {
@@ -38,10 +39,20 @@ public class SteamVR_Teleporter : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	
-	}
+        var device = SteamVR_Controller.Input((int)trackedObj.index);
+        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Grip))
+        {
+            transform.FindChild("Laser").gameObject.SetActive(true);
+        }
+        if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Grip))
+        {
+            transform.FindChild("Laser").gameObject.SetActive(false);
+            DoClick();
+        }
 
-    void DoClick(object sender, ClickedEventArgs e)
+    }
+
+    void DoClick()
     {
         if (teleportOnClick)
         {
