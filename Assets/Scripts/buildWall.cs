@@ -7,6 +7,7 @@ public class buildWall : MonoBehaviour
 {
     public Material startMaterial;
     public Material intermediateMaterial;
+    public Material hoverMaterial;
     public Material trackerMaterial;
     public Material wallMaterial;
     public Material floorMaterial;
@@ -98,7 +99,7 @@ public class buildWall : MonoBehaviour
         else {
             if (chainWalls)
             {
-                if (trackObject.transform.position == chainedPoints[0])
+                if (Vector3.Distance(trackObject.transform.position, chainedPoints[0]) < 0.6f)
                 {
                     endWall();
                 }
