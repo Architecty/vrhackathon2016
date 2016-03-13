@@ -23,12 +23,6 @@ public class SteamVR_Teleporter : MonoBehaviour
         // The referece point for the camera is two levels up from the SteamVR_Camera
         reference = eyeCamera.parent.parent;
 
-        if (GetComponent<SteamVR_TrackedController>() == null)
-        {
-            Debug.LogError("SteamVR_Teleporter must be on a SteamVR_TrackedController");
-            return;
-        }
-
         if (teleportType == TeleportType.TeleportTypeUseTerrain)
         {
             // Start the player at the level of the terrain

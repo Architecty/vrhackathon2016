@@ -130,14 +130,38 @@ public class grab : MonoBehaviour
 
     void pickupMenu(GameObject whichObject)
     {
-        Destroy(whichObject.GetComponent<Rigidbody>());
-        whichObject.transform.SetParent(transform);
+        if (whichObject.tag == "close")
+        {
+            StartCoroutine(destroyObject(whichObject.transform.parent.gameObject, .5f));
+        }
+        else {
+            Destroy(whichObject.GetComponent<Rigidbody>());
+            whichObject.transform.SetParent(transform);
+        }
     }
     void releaseMenu(GameObject whichObject)
     {
-        whichObject.AddComponent<Rigidbody>();
+        if (whichObject.tag == "close")
+        {
+            Debug.Log("SHould Close the Menu");
+        }
+        else {
+            whichObject.AddComponent<Rigidbody>();
         whichObject.GetComponent<Rigidbody>().isKinematic = true;
         whichObject.transform.SetParent(null);
+        }
+    }
+
+    IEnumerator destroyObject (GameObject whichObject, float howLong)
+    {
+        Vector3 startScale = whichObject.transform.localScale;
+        float startTime = Time.time;
+        while (Time.time - startTime < howLong)
+        {
+            whichObject.transform.localScale = Vector3.Lerp(startScale, Vector3.zero, (Time.time - startTime) / howLong);
+            yield return null;
+        }
+        Destroy(whichObject);
     }
 
     void pickupFloorMounted(GameObject whichObject)
