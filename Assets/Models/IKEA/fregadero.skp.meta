@@ -1,0 +1,235 @@
+fileFormatVersion: 2
+guid: 7c88edd60c577e247b0cdb3b8940feef
+timeCreated: 1457834968
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 70212878aa9b88f263ad33317a4099b1
+  longitude: -105.283
+  latitude: 40.017
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 1.780291, y: 2.097641, z: -2.3809693}
+      lookAt: {x: 6.2236257, y: 1.6433669, z: 21.748499}
+      up: {x: 0.0033525429, y: 0.99982864, z: 0.018205939}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes:
+    - camera:
+        position: {x: 14.258993, y: 8.584491, z: -13.181566}
+        lookAt: {x: 1.7429824, y: 2.1247783, z: 6.913271}
+        up: {x: -0.13917013, y: 0.96473074, z: 0.2234419}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Home
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: f02-022
+    100002: f02-022#1
+    100004: F20 005
+    100006: FA 110
+    100008: FA 502
+    100010: FA 510
+    100012: FA304
+    100014: FA315
+    100016: FA337
+    100018: FA510
+    100020: //RootNode
+    100022: fregadero Ikea Numerar
+    100024: Pata Capita Ikea 21cm
+    100026: Pata Capita Ikea 21cm 1
+    100028: Pata Capita Ikea 21cm 10
+    100030: Pata Capita Ikea 21cm 11
+    100032: Pata Capita Ikea 21cm 12
+    100034: Pata Capita Ikea 21cm 13
+    100036: Pata Capita Ikea 21cm 14
+    100038: Pata Capita Ikea 21cm 15
+    100040: Pata Capita Ikea 21cm 16
+    100042: Pata Capita Ikea 21cm 17
+    100044: Pata Capita Ikea 21cm 18
+    100046: Pata Capita Ikea 21cm 19
+    100048: Pata Capita Ikea 21cm 2
+    100050: Pata Capita Ikea 21cm 3
+    100052: Pata Capita Ikea 21cm 4
+    100054: Pata Capita Ikea 21cm 5
+    100056: Pata Capita Ikea 21cm 6
+    100058: Pata Capita Ikea 21cm 7
+    100060: Pata Capita Ikea 21cm 8
+    100062: Pata Capita Ikea 21cm 9
+    400000: f02-022
+    400002: f02-022#1
+    400004: F20 005
+    400006: FA 110
+    400008: FA 502
+    400010: FA 510
+    400012: FA304
+    400014: FA315
+    400016: FA337
+    400018: FA510
+    400020: //RootNode
+    400022: fregadero Ikea Numerar
+    400024: Pata Capita Ikea 21cm
+    400026: Pata Capita Ikea 21cm 1
+    400028: Pata Capita Ikea 21cm 10
+    400030: Pata Capita Ikea 21cm 11
+    400032: Pata Capita Ikea 21cm 12
+    400034: Pata Capita Ikea 21cm 13
+    400036: Pata Capita Ikea 21cm 14
+    400038: Pata Capita Ikea 21cm 15
+    400040: Pata Capita Ikea 21cm 16
+    400042: Pata Capita Ikea 21cm 17
+    400044: Pata Capita Ikea 21cm 18
+    400046: Pata Capita Ikea 21cm 19
+    400048: Pata Capita Ikea 21cm 2
+    400050: Pata Capita Ikea 21cm 3
+    400052: Pata Capita Ikea 21cm 4
+    400054: Pata Capita Ikea 21cm 5
+    400056: Pata Capita Ikea 21cm 6
+    400058: Pata Capita Ikea 21cm 7
+    400060: Pata Capita Ikea 21cm 8
+    400062: Pata Capita Ikea 21cm 9
+    2300000: f02-022
+    2300002: F20 005
+    2300004: FA 110
+    2300006: FA 502
+    2300008: FA304
+    2300010: FA315
+    2300012: FA337
+    2300014: FA510
+    2300016: //RootNode
+    2300018: fregadero Ikea Numerar
+    2300020: Pata Capita Ikea 21cm
+    2300022: Pata Capita Ikea 21cm 1
+    2300024: Pata Capita Ikea 21cm 10
+    2300026: Pata Capita Ikea 21cm 11
+    2300028: Pata Capita Ikea 21cm 12
+    2300030: Pata Capita Ikea 21cm 13
+    2300032: Pata Capita Ikea 21cm 14
+    2300034: Pata Capita Ikea 21cm 15
+    2300036: Pata Capita Ikea 21cm 16
+    2300038: Pata Capita Ikea 21cm 17
+    2300040: Pata Capita Ikea 21cm 18
+    2300042: Pata Capita Ikea 21cm 19
+    2300044: Pata Capita Ikea 21cm 2
+    2300046: Pata Capita Ikea 21cm 3
+    2300048: Pata Capita Ikea 21cm 4
+    2300050: Pata Capita Ikea 21cm 5
+    2300052: Pata Capita Ikea 21cm 6
+    2300054: Pata Capita Ikea 21cm 7
+    2300056: Pata Capita Ikea 21cm 8
+    2300058: Pata Capita Ikea 21cm 9
+    3300000: f02-022
+    3300002: F20 005
+    3300004: FA 110
+    3300006: FA 502
+    3300008: FA304
+    3300010: FA315
+    3300012: FA337
+    3300014: FA510
+    3300016: //RootNode
+    3300018: fregadero Ikea Numerar
+    3300020: Pata Capita Ikea 21cm
+    3300022: Pata Capita Ikea 21cm 1
+    3300024: Pata Capita Ikea 21cm 10
+    3300026: Pata Capita Ikea 21cm 11
+    3300028: Pata Capita Ikea 21cm 12
+    3300030: Pata Capita Ikea 21cm 13
+    3300032: Pata Capita Ikea 21cm 14
+    3300034: Pata Capita Ikea 21cm 15
+    3300036: Pata Capita Ikea 21cm 16
+    3300038: Pata Capita Ikea 21cm 17
+    3300040: Pata Capita Ikea 21cm 18
+    3300042: Pata Capita Ikea 21cm 19
+    3300044: Pata Capita Ikea 21cm 2
+    3300046: Pata Capita Ikea 21cm 3
+    3300048: Pata Capita Ikea 21cm 4
+    3300050: Pata Capita Ikea 21cm 5
+    3300052: Pata Capita Ikea 21cm 6
+    3300054: Pata Capita Ikea 21cm 7
+    3300056: Pata Capita Ikea 21cm 8
+    3300058: Pata Capita Ikea 21cm 9
+    4300000: Mesh fregadero
+    4300002: Mesh fregadero Ikea Numerar
+    4300004: Mesh Pata Capita Ikea 21cm
+    4300006: Mesh FA 110
+    4300008: Mesh f02-022
+    4300010: Mesh FA337
+    4300012: Mesh F20 005
+    4300014: Mesh FA304
+    4300016: Mesh FA315
+    4300018: Mesh FA510
+    4300020: Mesh FA 502
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

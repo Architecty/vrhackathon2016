@@ -1,0 +1,136 @@
+fileFormatVersion: 2
+guid: 8776cec97cbd6b349b9aaf147ea4fba3
+timeCreated: 1457834968
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 958cd9d0a4ea962cfda70e04d9cdb1ae
+  longitude: -105.283
+  latitude: 40.017
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 1.5655271, y: 0.77881396, z: -1.0360937}
+      lookAt: {x: 0.08829544, y: 0.18198833, z: -0.033769906}
+      up: {x: -0.26237622, y: 0.9484015, z: 0.17802618}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Ben_Bordsskiva_liten
+    100002: Ben_Bordsskiva_liten 1
+    100004: Ben_Bordsskiva_liten 2
+    100006: Bordsskiva_liten
+    100008: //RootNode
+    100010: 'Socket head cap screw #6-32 x#1'
+    100012: 'Socket head cap screw #6-32 x#1 1'
+    100014: 'Socket head cap screw #6-32 x#1 2'
+    100016: 'Socket head cap screw #6-32 x#1 3'
+    100018: 'Socket head cap screw #6-32 x#1 4'
+    100020: 'Socket head cap screw #6-32 x#1 5'
+    400000: Ben_Bordsskiva_liten
+    400002: Ben_Bordsskiva_liten 1
+    400004: Ben_Bordsskiva_liten 2
+    400006: Bordsskiva_liten
+    400008: //RootNode
+    400010: 'Socket head cap screw #6-32 x#1'
+    400012: 'Socket head cap screw #6-32 x#1 1'
+    400014: 'Socket head cap screw #6-32 x#1 2'
+    400016: 'Socket head cap screw #6-32 x#1 3'
+    400018: 'Socket head cap screw #6-32 x#1 4'
+    400020: 'Socket head cap screw #6-32 x#1 5'
+    2300000: Ben_Bordsskiva_liten
+    2300002: Ben_Bordsskiva_liten 1
+    2300004: Ben_Bordsskiva_liten 2
+    2300006: Bordsskiva_liten
+    2300008: 'Socket head cap screw #6-32 x#1'
+    2300010: 'Socket head cap screw #6-32 x#1 1'
+    2300012: 'Socket head cap screw #6-32 x#1 2'
+    2300014: 'Socket head cap screw #6-32 x#1 3'
+    2300016: 'Socket head cap screw #6-32 x#1 4'
+    2300018: 'Socket head cap screw #6-32 x#1 5'
+    3300000: Ben_Bordsskiva_liten
+    3300002: Ben_Bordsskiva_liten 1
+    3300004: Ben_Bordsskiva_liten 2
+    3300006: Bordsskiva_liten
+    3300008: 'Socket head cap screw #6-32 x#1'
+    3300010: 'Socket head cap screw #6-32 x#1 1'
+    3300012: 'Socket head cap screw #6-32 x#1 2'
+    3300014: 'Socket head cap screw #6-32 x#1 3'
+    3300016: 'Socket head cap screw #6-32 x#1 4'
+    3300018: 'Socket head cap screw #6-32 x#1 5'
+    4300000: Mesh Bordsskiva_liten
+    4300002: Mesh Ben_Bordsskiva_liten
+    4300004: 'Mesh Socket head cap screw #6-32 x#1'
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
