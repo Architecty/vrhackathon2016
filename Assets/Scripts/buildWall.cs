@@ -58,11 +58,12 @@ public class buildWall : MonoBehaviour
             }
             if (device.GetTouchUp(SteamVR_Controller.ButtonMask.ApplicationMenu))
             {
+                lastElement = chainedPoints.Count - 1;
                 if (lastElement != -1)
                 {
+                    Destroy(chainedCorners[lastElement]);
                     chainedCorners.RemoveAt(lastElement);
                     chainedPoints.RemoveAt(lastElement);
-                    lastElement = -1;
                 }
             }
         }
@@ -90,7 +91,7 @@ public class buildWall : MonoBehaviour
             {
                 GameObject starter = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;
                 starter.transform.position = startPoint;
-                starter.transform.localScale = new Vector3(.2f, .2f, .2f);
+                starter.transform.localScale = new Vector3(.25f, .25f, .25f);
                 starter.GetComponent<Renderer>().material = trackerMaterial;
                 trackObject = starter;
                 wallStart = starter;
